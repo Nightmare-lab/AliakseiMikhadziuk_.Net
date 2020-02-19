@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Beallador\\source\\repos\\IGI.lab1\\IGI.lab1\\IGI.lab1.csproj",
+      "projectUniqueName": "C:\\Users\\Beallador\\Documents\\AliakseiMikhadziuk_.Net\\IGI.lab1\\IGI.lab1\\IGI.lab1.csproj",
       "projectName": "IGI.lab1",
-      "projectPath": "C:\\Users\\Beallador\\source\\repos\\IGI.lab1\\IGI.lab1\\IGI.lab1.csproj",
+      "projectPath": "C:\\Users\\Beallador\\Documents\\AliakseiMikhadziuk_.Net\\IGI.lab1\\IGI.lab1\\IGI.lab1.csproj",
       "packagesPath": "C:\\Users\\Beallador\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Beallador\\source\\repos\\IGI.lab1\\IGI.lab1\\obj\\",
+      "outputPath": "C:\\Users\\Beallador\\Documents\\AliakseiMikhadziuk_.Net\\IGI.lab1\\IGI.lab1\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Beallador\\AppData\\Roaming\\NuGet\\NuGet.Config",
