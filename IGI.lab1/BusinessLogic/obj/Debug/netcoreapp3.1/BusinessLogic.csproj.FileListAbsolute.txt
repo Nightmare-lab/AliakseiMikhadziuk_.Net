@@ -3,3 +3,4 @@ C:\Users\Beallador\Documents\AliakseiMikhadziuk_.Net\IGI.lab1\BusinessLogic\bin\
 C:\Users\Beallador\Documents\AliakseiMikhadziuk_.Net\IGI.lab1\BusinessLogic\obj\Debug\netcoreapp3.1\BusinessLogic.csprojAssemblyReference.cache
 C:\Users\Beallador\Documents\AliakseiMikhadziuk_.Net\IGI.lab1\BusinessLogic\obj\Debug\netcoreapp3.1\BusinessLogic.AssemblyInfoInputs.cache
 C:\Users\Beallador\Documents\AliakseiMikhadziuk_.Net\IGI.lab1\BusinessLogic\obj\Debug\netcoreapp3.1\BusinessLogic.AssemblyInfo.cs
+C:\Users\Beallador\Documents\AliakseiMikhadziuk_.Net\IGI.lab1\BusinessLogic\bin\Debug\netcoreapp3.1\DataAccess.dll

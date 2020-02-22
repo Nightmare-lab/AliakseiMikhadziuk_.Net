@@ -1,4 +1,10 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using System;
+using System.IO;
+using System.Text.Encodings.Web;
+using System.Text.Json;
+using System.Text.Unicode;
+using Microsoft.Extensions.Configuration;
+using OfficeOpenXml.Core.ExcelPackage;
 
 namespace BusinessLogic.Services
 {
@@ -24,6 +30,39 @@ namespace BusinessLogic.Services
 
                 return _json;
             }
+        }
+
+        public string ExcelConnectionString
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(_excel))
+                {
+                    _excel = _configuration.GetConnectionString("EXCEL");
+                }
+
+                return _excel;
+            }
+        }
+
+        public void CreateJson<T>(T report)
+        {
+            var options = new JsonSerializerOptions
+            {
+                Encoder = JavaScriptEncoder.Create(UnicodeRanges.BasicLatin, UnicodeRanges.Cyrillic),
+                WriteIndented = true,
+            };
+
+            var json = JsonSerializer.Serialize(report, options);
+
+            File.WriteAllText(JsonConnectionString, json);
+        }
+
+
+        public void CreateExcel(ExcelPackage excel)
+        {
+            var excelFileInfo = new FileInfo(ExcelConnectionString);
+            excel.Save(excelFileInfo);
         }
     }
 }
