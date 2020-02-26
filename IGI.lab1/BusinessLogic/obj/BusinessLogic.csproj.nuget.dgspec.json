@@ -42,13 +42,13 @@
       "frameworks": {
         "netcoreapp3.1": {
           "dependencies": {
+            "EPPlus": {
+              "target": "Package",
+              "version": "[4.5.3.3, )"
+            },
             "Microsoft.Extensions.Logging": {
               "target": "Package",
               "version": "[3.1.2, )"
-            },
-            "OfficeOpenXml.Core.ExcelPackage": {
-              "target": "Package",
-              "version": "[1.0.0, )"
             }
           },
           "imports": [

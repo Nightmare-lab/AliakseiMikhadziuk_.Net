@@ -1,10 +1,9 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Text.Encodings.Web;
 using System.Text.Json;
 using System.Text.Unicode;
 using Microsoft.Extensions.Configuration;
-using OfficeOpenXml.Core.ExcelPackage;
+using OfficeOpenXml;
 
 namespace BusinessLogic.Services
 {
@@ -62,7 +61,7 @@ namespace BusinessLogic.Services
         public void CreateExcel(ExcelPackage excel)
         {
             var excelFileInfo = new FileInfo(ExcelConnectionString);
-            excel.Save(excelFileInfo);
+            excel.SaveAs(excelFileInfo);
         }
     }
 }

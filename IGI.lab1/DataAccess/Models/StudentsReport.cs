@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 
 namespace DataAccess.Models
 {
-    internal class StudentsReport
+    public class StudentsReport
     {
         public IReadOnlyCollection<Students> Students { get; set; }
 

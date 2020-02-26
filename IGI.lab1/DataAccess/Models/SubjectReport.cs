@@ -1,6 +1,6 @@
 ﻿namespace DataAccess.Models
 {
-    internal class SubjectReport
+    public class SubjectReport
     {
         public string Name { get; set; }
 

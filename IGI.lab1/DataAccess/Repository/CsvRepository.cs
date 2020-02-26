@@ -11,7 +11,7 @@ using DataAccess.Interfaces;
 
 namespace DataAccess.Repository
 {
-    internal class CsvRepository<T> : IRepository<T>
+    public class CsvRepository<T> : IRepository<T>
     {
         private string _connectionString;
         private readonly IConfiguration _configuration;
