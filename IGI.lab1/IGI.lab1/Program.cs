@@ -32,11 +32,14 @@ namespace IGI.lab1
                 .AddLogging()
                 .BuildServiceProvider();
 
+
+
             var logger = services.GetService<ILoggerFactory>().CreateLogger<Program>();
+            
             logger.LogInformation("Starting application");
 
             AppStart(services.GetService<ReportServices>(), args);
-
+            
             logger.LogInformation("All done!");
         }
 

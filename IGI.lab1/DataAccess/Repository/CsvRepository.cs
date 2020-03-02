@@ -16,13 +16,16 @@ namespace DataAccess.Repository
         private string _connectionString;
         private readonly IConfiguration _configuration;
         private readonly ILogger<CsvRepository<T>> _logger;
+        private readonly ClassMap<T> _map;
 
         public CsvRepository(IConfiguration configuration,
-            ILogger<CsvRepository<T>> logger
+            ILogger<CsvRepository<T>> logger,
+            ClassMap<T> map = null
             )
         {
             _configuration = configuration;
             _logger = logger;
+            _map = map;
         }
 
         public IEnumerable<T> GetAll()
@@ -43,7 +46,7 @@ namespace DataAccess.Repository
            {
                if (string.IsNullOrEmpty(_connectionString))
                {
-                   _connectionString = _configuration.GetConnectionString("");
+                   _connectionString = _configuration.GetConnectionString("CSV");
                }
 
                return _connectionString;
@@ -60,10 +63,15 @@ namespace DataAccess.Repository
             };
 
 
-            using var reader = new StreamReader(_connectionString);
+            using var reader = new StreamReader(ConnectionString);
             using var  csvReader = new CsvReader(reader,configuration);
 
             csvReader.Configuration.ReadingExceptionOccurred = ExceptionHandler;
+
+            if (_map != null)
+            {
+                csvReader.Configuration.RegisterClassMap(_map);
+            }
 
             var list = csvReader.GetRecords<T>().ToList();
 

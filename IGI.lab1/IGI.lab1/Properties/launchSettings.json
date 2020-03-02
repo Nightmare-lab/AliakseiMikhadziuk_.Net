@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "IGI.lab1": {
+      "commandName": "Project",
+      "commandLineArgs": "-t Json"
+    }
+  }
+}

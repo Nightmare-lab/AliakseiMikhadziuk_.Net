@@ -17,6 +17,7 @@ namespace BusinessLogic.Map
 
             Map(m => m.Surname).Name("Фамилия");
             Map(m => m.Name).Name("Имя");
+            Map(m => m.MiddleName).Name("Отчество");
             Map(m => m.MarkList).ConvertUsing(GetSubjects);
         }
 
@@ -26,7 +27,7 @@ namespace BusinessLogic.Map
             {
                 if (!_infoCount.HasValue)
                 {
-                    _infoCount = int.Parse(_configuration.GetSection("InformationParametersCount").Value);
+                    _infoCount = int.Parse(_configuration.GetConnectionString("InformationParametersCount"));
                 }
 
                 return _infoCount.Value;

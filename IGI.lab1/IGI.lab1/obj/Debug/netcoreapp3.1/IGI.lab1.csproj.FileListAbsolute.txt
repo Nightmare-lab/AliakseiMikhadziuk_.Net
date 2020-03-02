@@ -40,3 +40,4 @@ C:\Users\Beallador\Documents\AliakseiMikhadziuk_.Net\IGI.lab1\IGI.lab1\bin\Debug
 C:\Users\Beallador\Documents\AliakseiMikhadziuk_.Net\IGI.lab1\IGI.lab1\obj\Debug\netcoreapp3.1\IGI.lab1.csproj.CopyComplete
 C:\Users\Beallador\Documents\AliakseiMikhadziuk_.Net\IGI.lab1\IGI.lab1\obj\Debug\netcoreapp3.1\IGI.lab1.dll
 C:\Users\Beallador\Documents\AliakseiMikhadziuk_.Net\IGI.lab1\IGI.lab1\obj\Debug\netcoreapp3.1\IGI.lab1.pdb
+C:\Users\Beallador\Documents\AliakseiMikhadziuk_.Net\IGI.lab1\IGI.lab1\bin\Debug\netcoreapp3.1\appsettings.json
