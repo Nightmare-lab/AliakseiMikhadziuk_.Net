@@ -1,0 +1,5 @@
+C:\Users\Beallador\Documents\AliakseiMikhadziuk_.Net\src\CarPark.BLL\bin\Debug\netcoreapp3.1\CarPark.BLL.deps.json
+C:\Users\Beallador\Documents\AliakseiMikhadziuk_.Net\src\CarPark.BLL\bin\Debug\netcoreapp3.1\CarPark.BLL.dll
+C:\Users\Beallador\Documents\AliakseiMikhadziuk_.Net\src\CarPark.BLL\obj\Debug\netcoreapp3.1\CarPark.BLL.csprojAssemblyReference.cache
+C:\Users\Beallador\Documents\AliakseiMikhadziuk_.Net\src\CarPark.BLL\obj\Debug\netcoreapp3.1\CarPark.BLL.AssemblyInfoInputs.cache
+C:\Users\Beallador\Documents\AliakseiMikhadziuk_.Net\src\CarPark.BLL\obj\Debug\netcoreapp3.1\CarPark.BLL.AssemblyInfo.cs

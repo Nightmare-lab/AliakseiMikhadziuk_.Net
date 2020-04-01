@@ -1,0 +1,11 @@
+C:\Users\Beallador\Documents\AliakseiMikhadziuk_.Net\src\CarPark.ConsoleUI\bin\Debug\netcoreapp3.1\CarPark.ConsoleUI.exe
+C:\Users\Beallador\Documents\AliakseiMikhadziuk_.Net\src\CarPark.ConsoleUI\bin\Debug\netcoreapp3.1\CarPark.ConsoleUI.deps.json
+C:\Users\Beallador\Documents\AliakseiMikhadziuk_.Net\src\CarPark.ConsoleUI\bin\Debug\netcoreapp3.1\CarPark.ConsoleUI.runtimeconfig.json
+C:\Users\Beallador\Documents\AliakseiMikhadziuk_.Net\src\CarPark.ConsoleUI\bin\Debug\netcoreapp3.1\CarPark.ConsoleUI.runtimeconfig.dev.json
+C:\Users\Beallador\Documents\AliakseiMikhadziuk_.Net\src\CarPark.ConsoleUI\bin\Debug\netcoreapp3.1\CarPark.ConsoleUI.dll
+C:\Users\Beallador\Documents\AliakseiMikhadziuk_.Net\src\CarPark.ConsoleUI\bin\Debug\netcoreapp3.1\CarPark.ConsoleUI.pdb
+C:\Users\Beallador\Documents\AliakseiMikhadziuk_.Net\src\CarPark.ConsoleUI\obj\Debug\netcoreapp3.1\CarPark.ConsoleUI.csprojAssemblyReference.cache
+C:\Users\Beallador\Documents\AliakseiMikhadziuk_.Net\src\CarPark.ConsoleUI\obj\Debug\netcoreapp3.1\CarPark.ConsoleUI.AssemblyInfoInputs.cache
+C:\Users\Beallador\Documents\AliakseiMikhadziuk_.Net\src\CarPark.ConsoleUI\obj\Debug\netcoreapp3.1\CarPark.ConsoleUI.AssemblyInfo.cs
+C:\Users\Beallador\Documents\AliakseiMikhadziuk_.Net\src\CarPark.ConsoleUI\obj\Debug\netcoreapp3.1\CarPark.ConsoleUI.dll
+C:\Users\Beallador\Documents\AliakseiMikhadziuk_.Net\src\CarPark.ConsoleUI\obj\Debug\netcoreapp3.1\CarPark.ConsoleUI.pdb
