@@ -1,4 +1,0 @@
-2020-03-04T09:52:29.5444916+03:00  [INF] Starting application (d79ad781)
-2020-03-04T09:52:30.5800731+03:00  [INF] Get subject report (6ff44006)
-2020-03-04T09:52:32.2147309+03:00  [INF] Excel generated (7299fb81)
-2020-03-04T09:52:32.2231948+03:00  [INF] All done! (bd0ce0eb)
