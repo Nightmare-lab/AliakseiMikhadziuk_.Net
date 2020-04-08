@@ -3,3 +3,10 @@ C:\Users\Beallador\Documents\AliakseiMikhadziuk_.Net\src\CarPark.BLL\bin\Debug\n
 C:\Users\Beallador\Documents\AliakseiMikhadziuk_.Net\src\CarPark.BLL\obj\Debug\netcoreapp3.1\CarPark.BLL.csprojAssemblyReference.cache
 C:\Users\Beallador\Documents\AliakseiMikhadziuk_.Net\src\CarPark.BLL\obj\Debug\netcoreapp3.1\CarPark.BLL.AssemblyInfoInputs.cache
 C:\Users\Beallador\Documents\AliakseiMikhadziuk_.Net\src\CarPark.BLL\obj\Debug\netcoreapp3.1\CarPark.BLL.AssemblyInfo.cs
+C:\Users\Beallador\Documents\AliakseiMikhadziuk_.Net\src\CarPark.BLL\bin\Debug\netcoreapp3.1\CarPark.BLL.pdb
+C:\Users\Beallador\Documents\AliakseiMikhadziuk_.Net\src\CarPark.BLL\bin\Debug\netcoreapp3.1\CarPark.DAL.dll
+C:\Users\Beallador\Documents\AliakseiMikhadziuk_.Net\src\CarPark.BLL\bin\Debug\netcoreapp3.1\CarPark.DAL.pdb
+C:\Users\Beallador\Documents\AliakseiMikhadziuk_.Net\src\CarPark.BLL\obj\Debug\netcoreapp3.1\CarPark.BLL.csproj.CopyComplete
+C:\Users\Beallador\Documents\AliakseiMikhadziuk_.Net\src\CarPark.BLL\obj\Debug\netcoreapp3.1\CarPark.BLL.dll
+C:\Users\Beallador\Documents\AliakseiMikhadziuk_.Net\src\CarPark.BLL\obj\Debug\netcoreapp3.1\CarPark.BLL.pdb
+C:\Users\Beallador\Documents\AliakseiMikhadziuk_.Net\src\CarPark.BLL\bin\Debug\netcoreapp3.1\appsettings.json

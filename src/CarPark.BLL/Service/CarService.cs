@@ -1,21 +1,24 @@
 ﻿using System;
 using System.Linq;
+using AutoMapper;
 using CarPark.DAL.Interfaces;
-using CarPark.DAL.Models;
 
 namespace CarPark.BLL.Service
 {
     public class CarService
     {
-        private readonly IRepository<Cars> _repository;
+        private readonly IMapper _mapper;
+        private readonly IRepository<DAL.Models.Cars> _repository;
 
-        public CarService(IRepository<Cars> repository)
+        public CarService(IRepository<DAL.Models.Cars> repository, IMapper mapper)
         {
             _repository = repository;
+            _mapper = mapper;
         }
 
-        public void Add(Cars car)
+        public void Add(Dto.Cars cars)
         {
+            var car = _mapper.Map<DAL.Models.Cars>(cars);
             if (car == null)
             {
                 throw  new ArgumentNullException(nameof(car),"Not exist!");
@@ -42,8 +45,9 @@ namespace CarPark.BLL.Service
             _repository.Remove(id);
         }
 
-        public void Edit(Cars car)
+        public void Edit(Dto.Cars cars)
         {
+            var car = _mapper.Map<DAL.Models.Cars>(cars);
             if (car == null)
             {
                 throw new ArgumentNullException(nameof(car), "Not exist!");
@@ -64,7 +68,7 @@ namespace CarPark.BLL.Service
                 throw new ArgumentException("CarRegistrationNumber is not unique!");
             }
 
-            _repository.Edit(updateModel);
+            _repository.Edit(car);
         }
     }
 }

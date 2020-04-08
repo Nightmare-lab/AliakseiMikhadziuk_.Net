@@ -1,21 +1,24 @@
 ﻿using System;
 using System.Linq;
+using AutoMapper;
 using CarPark.DAL.Interfaces;
-using CarPark.DAL.Models;
 
 namespace CarPark.BLL.Service
 {
     public class CarModelService
     {
-        private readonly IRepository<CarModels> _repository;
+        private readonly IMapper _mapper;
+        private readonly IRepository<DAL.Models.CarModels> _repository;
 
-        public CarModelService(IRepository<CarModels> repository)
+        public CarModelService(IRepository<DAL.Models.CarModels> repository, IMapper mapper)
         {
             _repository = repository;
+            _mapper = mapper;
         }
 
-        public void Add(CarModels carModel)
+        public void Add(Dto.CarModels carModels)
         {
+            var carModel = _mapper.Map<DAL.Models.CarModels>(carModels);
             if (carModel == null)
             {
                 throw new ArgumentNullException(nameof(carModel), "Not exist!");
@@ -38,8 +41,9 @@ namespace CarPark.BLL.Service
             _repository.Remove(id);
         }
 
-        public void Edit(CarModels carModel)
+        public void Edit(Dto.CarModels carModels)
         {
+            var carModel = _mapper.Map<DAL.Models.CarModels>(carModels);
             if (carModel == null)
             {
                 throw new ArgumentNullException(nameof( carModel), "Not exist!");
