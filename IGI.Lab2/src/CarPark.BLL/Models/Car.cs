@@ -1,4 +1,4 @@
-﻿namespace CarPark.BLL.Dto
+﻿namespace CarPark.BLL.Models
 {
     public class Car
     {

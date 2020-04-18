@@ -1,14 +1,16 @@
-﻿namespace CarPark.ConsoleUI.Interfaces
+﻿using System.Threading.Tasks;
+
+namespace CarPark.ConsoleUI.Interfaces
 {
-    public interface ICrudService<T>
-        where T : class
+    public interface ICrudService<TEntity>
+        where TEntity : class
     {
-        void Add();
+        Task AddAsync();
 
-        void Remove();
+        Task RemoveAsync();
 
-        void Edit();
+        Task EditAsync();
 
-        T Create();
+        Task<TEntity> CreateAsync();
     }
 }

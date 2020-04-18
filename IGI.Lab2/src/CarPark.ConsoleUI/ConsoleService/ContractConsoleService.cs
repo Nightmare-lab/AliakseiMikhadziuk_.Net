@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Linq;
-using CarPark.BLL.Dto;
-using CarPark.BLL.Service;
+using System.Threading.Tasks;
+using CarPark.BLL.Models;
+using CarPark.BLL.Services;
 using CarPark.ConsoleUI.Extensions;
 using CarPark.ConsoleUI.Interfaces;
 using CarPark.ConsoleUI.ViewModels;
@@ -19,26 +20,26 @@ namespace CarPark.ConsoleUI.ConsoleService
             _carService = carService;
         }
 
-        public void ConsoleMenu()
+        public async Task StartMenu()
         {
             try
             {
                 Console.Clear();
-                ConsolePrintMenu();
-                ConsolePrintAll();
+                PrintMenu();
+                await PrintItems();
 
                 var menuTab = int.Parse(Console.ReadLine() ?? throw new InvalidOperationException());
 
                 switch (menuTab)
                 {
                     case 1:
-                        Add();
+                        await AddAsync();
                         break;
                     case 2:
-                        Remove();
+                        await RemoveAsync();
                         break;
                     case 3:
-                        Edit();
+                        await EditAsync();
                         break;
                     case 4:
                         return;
@@ -51,20 +52,20 @@ namespace CarPark.ConsoleUI.ConsoleService
             }
         }
 
-        public void ConsolePrintMenu()
+        public void PrintMenu()
         {
-            Console.WriteLine("1. Add contract");
+            Console.WriteLine("1. AddAsync contract");
             Console.WriteLine("2. Delete contract");
-            Console.WriteLine("3. Edit contract ");
+            Console.WriteLine("3. EditAsync contract ");
             Console.WriteLine("4. Back");
         }
 
-        public void ConsolePrintAll()
+        public async Task PrintItems()
         {
-            var items = _contractService.GetAll().Select(contract => new ContractViewModel()
+            var items = (await _contractService.GetAllAsync()).Select( async contract =>   new ContractViewModel()
             {
                 CarId = contract.CarId,
-                CarName = _carService.Get(contract.CarId).CarMake,
+                CarName = (await _carService.GetAsync(contract.CarId)).CarMake,
                 ContractDays = contract.ContractDays,
                 EndTimeContract = contract.EndTimeContract,
                 Id = contract.Id,
@@ -73,37 +74,37 @@ namespace CarPark.ConsoleUI.ConsoleService
             items.ToTable();
         }
 
-        public void Add()
+        public async Task AddAsync()
         {
-            var contractDto = Create();
-            _contractService.Add(contractDto);
+            var contractDto = await CreateAsync();
+            await _contractService.AddAsync(contractDto);
         }
 
-        public void Remove()
+        public async Task RemoveAsync()
         {
             Console.WriteLine("Enter Id of contract to delete");
             var id = int.Parse(Console.ReadLine() ?? throw new InvalidOperationException());
-            _contractService.Remove(id);
+            await _contractService.RemoveAsync(id);
         }
 
-        public void Edit()
+        public async Task EditAsync()
         {
             Console.WriteLine("Enter Id of contract to edit");
             var id = int.Parse(Console.ReadLine() ?? throw new InvalidOperationException());
-            var contractDto = Create();
+            var contractDto = await CreateAsync();
             contractDto.Id = id;
 
-            _contractService.Edit(contractDto);
+            await _contractService.EditAsync(contractDto);
         }
 
-        public Contract Create()
+        public async Task<Contract> CreateAsync()
         {
             Console.WriteLine("Enter Contract Start Time : ");
             var timeStart = DateTime.Parse(Console.ReadLine());
             Console.WriteLine("Enter Contract End Time: ");
             var timeEnd = DateTime.Parse(Console.ReadLine());
             Console.WriteLine("Enter car Id: ");
-            var car = _carService.Get(int.Parse(Console.ReadLine() ?? throw new InvalidOperationException()));
+            var car = await _carService.GetAsync(int.Parse(Console.ReadLine() ?? throw new InvalidOperationException()));
             Console.WriteLine("Enter the number of days: ");
             var numberOfDay = int.Parse(Console.ReadLine() ?? throw new InvalidOperationException());
 

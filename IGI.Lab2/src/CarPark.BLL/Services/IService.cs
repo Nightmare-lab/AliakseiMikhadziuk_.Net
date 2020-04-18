@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace CarPark.DAL.Interfaces
+namespace CarPark.BLL.Services
 {
-    public interface IRepository <TEntity> where TEntity : class, IEntity
+    public interface IService<TEntity>
     {
         Task<TEntity> GetAsync(int id);
 

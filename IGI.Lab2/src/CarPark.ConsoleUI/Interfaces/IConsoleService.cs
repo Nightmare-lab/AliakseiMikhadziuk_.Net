@@ -1,12 +1,14 @@
 ﻿
+using System.Threading.Tasks;
+
 namespace CarPark.ConsoleUI.Interfaces
 {
     public interface IConsoleService
     {
-        void ConsoleMenu();
+        Task StartMenu();
 
-        void ConsolePrintMenu();
+        void PrintMenu();
 
-        void ConsolePrintAll();
+        Task PrintItems();
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CarPark.BLL.Dto
+namespace CarPark.BLL.Models
 {
     public class Contract
     {

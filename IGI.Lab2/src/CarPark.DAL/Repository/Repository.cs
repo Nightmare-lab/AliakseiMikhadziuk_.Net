@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
+using System.Threading.Tasks;
 using CarPark.DAL.EF;
 using CarPark.DAL.Interfaces;
 using Microsoft.EntityFrameworkCore;
@@ -16,35 +16,35 @@ namespace CarPark.DAL.Repository
             _context = db;
         }
 
-        public TEntity Get(int id)
+        public async Task<TEntity> GetAsync(int id)
         {
-            return _context.Set<TEntity>()
+            return await _context.Set<TEntity>()
                 .AsNoTracking()
-                .FirstOrDefault(item=>item.Id == id);
+                .FirstOrDefaultAsync(item=>item.Id == id);
         }
 
-        public IEnumerable<TEntity> GetAll()
+        public async Task<IEnumerable<TEntity>> GetAllAsync()
         {
-            return _context.Set<TEntity>().AsNoTracking().ToList();
+            return await _context.Set<TEntity>().AsNoTracking().ToListAsync();
         }
 
-        public void Add(TEntity entity)
+        public async Task AddAsync(TEntity entity)
         {
-            _context.Set<TEntity>().Add(entity);
-            _context.SaveChanges();
+            await _context.Set<TEntity>().AddAsync(entity);
+            await _context.SaveChangesAsync();
         }
 
-        public void Edit(TEntity entity)
+        public async Task EditAsync(TEntity entity)
         {
             _context.Set<TEntity>().Update(entity);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
-        public void Remove(int id)
+        public async Task RemoveAsync(int id)
         {
-            var entity = Get(id);
+            var entity = await GetAsync(id);
             _context.Set<TEntity>().Remove(entity);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
     }
 }

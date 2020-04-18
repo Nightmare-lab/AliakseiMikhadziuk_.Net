@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 using AutoMapper;
-using CarPark.BLL.MappingProfile;
+using CarPark.BLL.MappingProfiles;
 using CarPark.DAL.EF;
 using CarPark.DAL.Interfaces;
 using CarPark.DAL.Repository;

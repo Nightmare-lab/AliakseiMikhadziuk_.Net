@@ -1,5 +1,6 @@
 ﻿using System.IO;
-using CarPark.ConsoleUI.ConsoleService.MenuService;
+using System.Threading.Tasks;
+using CarPark.ConsoleUI.ConsoleService;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -7,7 +8,7 @@ namespace CarPark.ConsoleUI
 {
     class Program
     {
-        static void Main()
+        static async Task Main()
         {
             var builder = new ConfigurationBuilder();
             builder.SetBasePath(Directory.GetCurrentDirectory());
@@ -17,7 +18,7 @@ namespace CarPark.ConsoleUI
             var services = DiConfig.Configure(config);
 
             var mainMenu = services.GetService<MenuConsoleService>();
-            mainMenu.ConsoleMenu();
+            await mainMenu.StartMenu();
         }
     }
 }

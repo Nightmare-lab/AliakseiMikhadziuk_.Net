@@ -1,7 +1,8 @@
 ﻿using System;
+using System.Threading.Tasks;
 using CarPark.ConsoleUI.Interfaces;
 
-namespace CarPark.ConsoleUI.ConsoleService.MenuService
+namespace CarPark.ConsoleUI.ConsoleService
 {
     public class MenuConsoleService : IConsoleService
     {
@@ -19,14 +20,14 @@ namespace CarPark.ConsoleUI.ConsoleService.MenuService
             _accidentConsoleService = accidentConsoleService;
         }
 
-        public void ConsoleMenu()
+        public async Task StartMenu()
         {
             while (true)
             {
                 try
                 {
                     Console.Clear();
-                    ConsolePrintMenu();
+                    PrintMenu();
 
                     var menuItemSelection = int.Parse(Console.ReadLine() ?? throw new InvalidOperationException());
 
@@ -34,19 +35,19 @@ namespace CarPark.ConsoleUI.ConsoleService.MenuService
                     {
                         case 1:
                             {
-                                _carsConsoleService.ConsoleMenu();
+                               await _carsConsoleService.StartMenu();
                             }
 
                             break;
                         case 2:
                             {
-                                _contractConsoleService.ConsoleMenu();
+                                await _contractConsoleService.StartMenu();
                             }
 
                             break;
                         case 3:
                             {
-                                _accidentConsoleService.ConsoleMenu();
+                               await _accidentConsoleService.StartMenu();
                             }
 
                             break;
@@ -64,7 +65,7 @@ namespace CarPark.ConsoleUI.ConsoleService.MenuService
             }
         }
 
-        public void ConsolePrintMenu()
+        public void PrintMenu()
         {
             Console.WriteLine("1. Car");
             Console.WriteLine("2. Contract");
@@ -72,9 +73,9 @@ namespace CarPark.ConsoleUI.ConsoleService.MenuService
             Console.WriteLine("4. Exit");
         }
 
-        public void ConsolePrintAll()
+        public Task PrintItems()
         {
-
+            throw new NotImplementedException();
         }
     }
 }

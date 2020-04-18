@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using AutoMapper;
-using CarPark.BLL.Dto;
+using CarPark.BLL.Models;
 using CarPark.DAL.Interfaces;
 
-namespace CarPark.BLL.Service
+namespace CarPark.BLL.Services
 {
-    public class ContractService
+    public class ContractService : IService<Contract>
     {
         private readonly IMapper _mapper;
         private readonly IRepository<DAL.Models.Contract> _repository;
@@ -18,7 +19,7 @@ namespace CarPark.BLL.Service
             _mapper = mapper;
         }
 
-        public void Add(Contract contracts)
+        public async Task AddAsync(Contract contracts)
         {
             var contract = _mapper.Map<DAL.Models.Contract>(contracts);
 
@@ -32,15 +33,15 @@ namespace CarPark.BLL.Service
                 throw new ArgumentException("Invalid contract date!");
             }
 
-            _repository.Add(contract);
+            await _repository.AddAsync(contract);
         }
 
-        public void Remove(int id)
+        public async Task RemoveAsync(int id)
         {
-            _repository.Remove(id);
+            await _repository.RemoveAsync(id);
         }
 
-        public void Edit(Contract contracts)
+        public async Task EditAsync(Contract contracts)
         {
             var contract = _mapper.Map<DAL.Models.Contract>(contracts);
             if (contract == null)
@@ -48,7 +49,7 @@ namespace CarPark.BLL.Service
                 throw new ArgumentNullException(nameof(contract), "Not exist!");
             }
 
-            var updateModel = _repository.GetAll().FirstOrDefault(item => item.Id == contract.Id);
+            var updateModel = (await _repository.GetAllAsync()).FirstOrDefault(item => item.Id == contract.Id);
 
             if (updateModel == null)
             {
@@ -60,17 +61,17 @@ namespace CarPark.BLL.Service
                 throw new ArgumentException("Invalid contract date!");
             }
 
-            _repository.Edit(contract);
+            await _repository.EditAsync(contract);
         }
 
-        public IEnumerable<Contract> GetAll()
+        public async Task<IEnumerable<Contract>> GetAllAsync()
         {
-            return (_repository.GetAll()).Select(item => _mapper.Map<Contract>(item));
+            return ( await _repository.GetAllAsync()).Select(item => _mapper.Map<Contract>(item));
         }
 
-        public Contract Get(int id)
+        public async Task<Contract> GetAsync(int id)
         {
-            return _mapper.Map<Contract>(_repository.Get(id));
+            return _mapper.Map<Contract>(await _repository.GetAsync(id));
         }
     }
 }

@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using AutoMapper;
-using CarPark.BLL.Dto;
+using CarPark.BLL.Models;
 using CarPark.DAL.Interfaces;
 
-namespace CarPark.BLL.Service
+namespace CarPark.BLL.Services
 {
-    public class AccidentService
+    public class AccidentService : IService<Accident>
     {
         private readonly IMapper _mapper;
         private readonly IRepository<DAL.Models.Accident> _repository;
@@ -18,7 +19,7 @@ namespace CarPark.BLL.Service
             _mapper = mapper;
         }
 
-        public void Add(Accident accidents)
+        public async Task AddAsync(Accident accidents)
         {
             var accident = _mapper.Map<DAL.Models.Accident>(accidents);
             if (accident == null)
@@ -26,15 +27,15 @@ namespace CarPark.BLL.Service
                 throw  new ArgumentNullException(nameof(accident),"Not exist!");
             }
 
-            _repository.Add(accident);
+            await _repository.AddAsync(accident);
         }
 
-        public void Remove(int id)
+        public async Task RemoveAsync(int id)
         {
-            _repository.Remove(id);
+            await _repository.RemoveAsync(id);
         }
 
-        public void Edit(Accident accidents)
+        public async Task EditAsync(Accident accidents)
         {
             var accident = _mapper.Map<DAL.Models.Accident>(accidents);
             if (accident == null)
@@ -42,19 +43,24 @@ namespace CarPark.BLL.Service
                 throw new ArgumentNullException(nameof(accident), "Not exist!");
             }
 
-            var updateModel = _repository.GetAll().FirstOrDefault(item => item.Id == accident.Id);
+            var updateModel = (await _repository.GetAllAsync()).FirstOrDefault(item => item.Id == accident.Id);
 
             if (updateModel == null)
             {
                 throw new ArgumentNullException(nameof(accident), "Object to update does not exist");
             }
 
-            _repository.Edit(accident);
+            await _repository.EditAsync(accident);
         }
 
-        public IEnumerable<Accident> GetAll()
+        public Task<Accident> GetAsync(int id)
         {
-            return (_repository.GetAll()).Select(item => _mapper.Map<Accident>(item));
+            throw new NotImplementedException();
+        }
+
+        public async Task<IEnumerable<Accident>> GetAllAsync()
+        {
+            return (await _repository.GetAllAsync()).Select(item => _mapper.Map<Accident>(item));
         }
     }
 }

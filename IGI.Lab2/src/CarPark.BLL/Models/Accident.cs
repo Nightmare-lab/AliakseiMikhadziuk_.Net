@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace CarPark.BLL.Dto
+namespace CarPark.BLL.Models
 {
     public class Accident
     {

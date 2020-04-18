@@ -1,6 +1,7 @@
 ﻿using System;
-using CarPark.BLL.Dto;
-using CarPark.BLL.Service;
+using System.Threading.Tasks;
+using CarPark.BLL.Models;
+using CarPark.BLL.Services;
 using CarPark.ConsoleUI.Extensions;
 using CarPark.ConsoleUI.Interfaces;
 using static System.Decimal;
@@ -17,26 +18,26 @@ namespace CarPark.ConsoleUI.ConsoleService
         }
 
 
-        public void ConsoleMenu()
+        public async Task StartMenu()
         {
             try
             {
                 Console.Clear();
-                ConsolePrintMenu();
-                ConsolePrintAll();
+                PrintMenu();
+                await PrintItems();
 
                 var menuTab = int.Parse(Console.ReadLine() ?? throw new InvalidOperationException());
 
                 switch (menuTab)
                 {
                     case 1:
-                        Add();
+                        await AddAsync();
                         break;
                     case 2:
-                        Remove();
+                        await RemoveAsync();
                         break;
                     case 3:
-                        Edit();
+                        await EditAsync();
                         break;
                     case 4:
                         return;
@@ -49,44 +50,44 @@ namespace CarPark.ConsoleUI.ConsoleService
             }
         }
 
-        public void ConsolePrintMenu()
+        public void PrintMenu()
         {
-            Console.WriteLine("1. Add car");
+            Console.WriteLine("1. AddAsync car");
             Console.WriteLine("2. Delete car");
             Console.WriteLine("3. Update car");
             Console.WriteLine("4. Back");
         }
 
-        public void ConsolePrintAll()
+        public async Task PrintItems()
         {
-            var items = _carService.GetAll();
+            var items = await _carService.GetAllAsync();
             items.ToTable();
         }
 
-        public void Add()
+        public async Task AddAsync()
         {
-            var carDto = Create();
-            _carService.Add(carDto);
+            var carDto = await CreateAsync();
+            await _carService.AddAsync(carDto);
         }
 
-        public void Remove()
+        public async Task RemoveAsync()
         {
             Console.WriteLine("Enter Id of car to delete");
             var id = int.Parse(Console.ReadLine() ?? throw new InvalidOperationException());
-            _carService.Remove(id);
+            await _carService.RemoveAsync(id);
         }
 
-        public void Edit()
+        public async Task EditAsync()
         {
             Console.WriteLine("Enter Id of car to edit");
             var id = int.Parse(Console.ReadLine() ?? throw new InvalidOperationException());
-            var carDto = Create();
+            var carDto = await CreateAsync();
             carDto.Id = id;
 
-            _carService.Edit(carDto);
+           await _carService.EditAsync(carDto);
         }
 
-        public Car Create()
+        public async Task<Car> CreateAsync()
         {
             Console.WriteLine("Enter car make: ");
             var carMake = Console.ReadLine();
