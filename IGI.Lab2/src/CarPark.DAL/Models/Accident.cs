@@ -8,7 +8,7 @@ namespace CarPark.DAL.Models
     {
         public int Id { get; set; }
 
-        [ForeignKey("Contract")]
+        [ForeignKey(nameof(Contract))]
         public int ContractId { get; set; }
 
         public Contract Contract { get; set; }

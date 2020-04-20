@@ -54,18 +54,19 @@ namespace CarPark.ConsoleUI.ConsoleService
 
         public void PrintMenu()
         {
-            Console.WriteLine("1. AddAsync contract");
+            Console.WriteLine("1. Add contract");
             Console.WriteLine("2. Delete contract");
-            Console.WriteLine("3. EditAsync contract ");
+            Console.WriteLine("3. Edit contract ");
             Console.WriteLine("4. Back");
         }
 
         public async Task PrintItems()
         {
-            var items = (await _contractService.GetAllAsync()).Select( async contract =>   new ContractViewModel()
+            var cars = await _carService.GetAllAsync();
+            var items = (await _contractService.GetAllAsync()).Select(contract =>   new ContractViewModel()
             {
                 CarId = contract.CarId,
-                CarName = (await _carService.GetAsync(contract.CarId)).CarMake,
+                CarName = cars.First(car => car.Id == contract.CarId).CarMake,
                 ContractDays = contract.ContractDays,
                 EndTimeContract = contract.EndTimeContract,
                 Id = contract.Id,

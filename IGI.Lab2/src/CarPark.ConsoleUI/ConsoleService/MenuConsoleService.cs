@@ -34,27 +34,16 @@ namespace CarPark.ConsoleUI.ConsoleService
                     switch (menuItemSelection)
                     {
                         case 1:
-                            {
-                               await _carsConsoleService.StartMenu();
-                            }
-
+                            await _carsConsoleService.StartMenu();
                             break;
                         case 2:
-                            {
-                                await _contractConsoleService.StartMenu();
-                            }
-
+                            await _contractConsoleService.StartMenu();
                             break;
                         case 3:
-                            {
-                               await _accidentConsoleService.StartMenu();
-                            }
-
+                            await _accidentConsoleService.StartMenu();
                             break;
                         case 4:
-                            {
-                                return;
-                            }
+                            return;
                     }
                 }
                 catch (Exception e)

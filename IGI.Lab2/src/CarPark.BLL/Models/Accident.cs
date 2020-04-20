@@ -7,7 +7,6 @@ namespace CarPark.BLL.Models
     {
         public int Id { get; set; }
 
-        [ForeignKey("Contract")]
         public int ContractId { get; set; }
 
         public Contract Contract { get; set; }
