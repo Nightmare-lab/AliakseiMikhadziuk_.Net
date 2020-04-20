@@ -1,8 +1,0 @@
-{
-  "runtimeOptions": {
-    "additionalProbingPaths": [
-      "C:\\Users\\Beallador\\.dotnet\\store\\|arch|\\|tfm|",
-      "C:\\Users\\Beallador\\.nuget\\packages"
-    ]
-  }
-}

@@ -12,7 +12,7 @@ namespace CarPark.DAL.Models
 
         public DateTime EndTimeContract { get; set; }
 
-        [ForeignKey("Car")]
+        [ForeignKey(nameof(Car))]
         public int CarId { get; set; }
 
         public Car Car { get; set; }
