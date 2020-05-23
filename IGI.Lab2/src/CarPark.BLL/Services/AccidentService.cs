@@ -53,9 +53,9 @@ namespace CarPark.BLL.Services
             await _repository.EditAsync(accident);
         }
 
-        public Task<Accident> GetAsync(int id)
+        public async Task<Accident> GetAsync(int id)
         {
-            throw new NotImplementedException();
+            return _mapper.Map<Accident>(await _repository.GetAsync(id));
         }
 
         public async Task<IEnumerable<Accident>> GetAllAsync()

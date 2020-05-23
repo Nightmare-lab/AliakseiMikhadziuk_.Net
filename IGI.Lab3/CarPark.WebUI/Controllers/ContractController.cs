@@ -1,14 +1,11 @@
-﻿ using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
- using CarPark.BLL.Models;
- using CarPark.BLL.Services;
+using CarPark.BLL.Services;
  using CarPark.WebUI.Models;
- using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+ using Contract = CarPark.BLL.Models.Contract;
 
-namespace CarPark.WebUI.Controllers
+ namespace CarPark.WebUI.Controllers
 {
     public class ContractController : Controller
     {
@@ -64,49 +61,76 @@ namespace CarPark.WebUI.Controllers
                 return View();
         }
 
-        // GET: Contract/Edit/5
-        public ActionResult Edit(int id)
+        
+        public async Task<IActionResult> Edit(int id)
         {
-            return View();
+            var contract = await _contractService.GetAsync(id);
+
+            var contractView = new ContractViewModel()
+            {
+                Id = id,
+                StarTimeContract = contract.StarTimeContract,
+                EndTimeContract = contract.EndTimeContract,
+                ContractDays = contract.ContractDays,
+                CarId = contract.CarId
+            };
+            return View(contractView);
         }
 
         // POST: Contract/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public async Task<IActionResult> Edit(int id, ContractViewModel contractViewModel)
         {
             try
             {
-                // TODO: Add update logic here
+                await _contractService.EditAsync(new Contract()
+                {
+                    Id = id,
+                    StarTimeContract = contractViewModel.StarTimeContract,
+                    EndTimeContract = contractViewModel.EndTimeContract,
+                    ContractDays = contractViewModel.ContractDays,
+                    CarId = contractViewModel.CarId
+                });
 
                 return RedirectToAction(nameof(Index));
             }
             catch
             {
-                return View();
+                return View(contractViewModel);
             }
         }
 
-        // GET: Contract/Delete/5
-        public ActionResult Delete(int id)
+        
+        public async Task<IActionResult> Delete(int id)
         {
-            return View();
+            var contract = await _contractService.GetAsync(id);
+
+            var contractView = new ContractViewModel()
+            {
+                Id = contract.Id,
+                CarId = contract.CarId,
+                StarTimeContract = contract.StarTimeContract,
+                EndTimeContract = contract.EndTimeContract,
+                ContractDays = contract.ContractDays
+            };
+
+            return View(contractView);
         }
 
-        // POST: Contract/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public async Task<IActionResult> Delete(ContractViewModel contractViewModel)
         {
             try
             {
-                // TODO: Add delete logic here
+                await _contractService.RemoveAsync(contractViewModel.Id);
 
                 return RedirectToAction(nameof(Index));
             }
             catch
             {
-                return View();
+                return View(contractViewModel);
             }
         }
     }

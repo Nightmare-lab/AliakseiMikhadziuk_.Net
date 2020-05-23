@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29709.97
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarPark.WebUI", "CarPark.WebUI.csproj", "{E97D8794-5BF9-47C4-9BC1-D964DA5D89E1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarPark.WebUI", "CarPark.WebUI.csproj", "{E97D8794-5BF9-47C4-9BC1-D964DA5D89E1}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarPark.DAL", "..\..\..\Documents\AliakseiMikhadziuk_.Net\IGI.Lab2\src\CarPark.DAL\CarPark.DAL.csproj", "{0F1E6EFF-6A41-4CA6-805B-41F94F56382C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarPark.BLL", "..\..\IGI.Lab2\src\CarPark.BLL\CarPark.BLL.csproj", "{B2B19D90-4E3F-4278-8B15-E91A5C7F8F20}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarPark.BLL", "..\..\..\Documents\AliakseiMikhadziuk_.Net\IGI.Lab2\src\CarPark.BLL\CarPark.BLL.csproj", "{FEA94875-4DF5-46F2-AF5A-467A6FE2A6B1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarPark.DAL", "..\..\IGI.Lab2\src\CarPark.DAL\CarPark.DAL.csproj", "{0037A3DE-A050-43FA-A835-41351400100F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,14 +19,14 @@ Global
 		{E97D8794-5BF9-47C4-9BC1-D964DA5D89E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E97D8794-5BF9-47C4-9BC1-D964DA5D89E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E97D8794-5BF9-47C4-9BC1-D964DA5D89E1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0F1E6EFF-6A41-4CA6-805B-41F94F56382C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0F1E6EFF-6A41-4CA6-805B-41F94F56382C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0F1E6EFF-6A41-4CA6-805B-41F94F56382C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0F1E6EFF-6A41-4CA6-805B-41F94F56382C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FEA94875-4DF5-46F2-AF5A-467A6FE2A6B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FEA94875-4DF5-46F2-AF5A-467A6FE2A6B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FEA94875-4DF5-46F2-AF5A-467A6FE2A6B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FEA94875-4DF5-46F2-AF5A-467A6FE2A6B1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B2B19D90-4E3F-4278-8B15-E91A5C7F8F20}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2B19D90-4E3F-4278-8B15-E91A5C7F8F20}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2B19D90-4E3F-4278-8B15-E91A5C7F8F20}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2B19D90-4E3F-4278-8B15-E91A5C7F8F20}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0037A3DE-A050-43FA-A835-41351400100F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0037A3DE-A050-43FA-A835-41351400100F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0037A3DE-A050-43FA-A835-41351400100F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0037A3DE-A050-43FA-A835-41351400100F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

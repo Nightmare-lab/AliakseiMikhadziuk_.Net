@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 using CarPark.BLL.Models;
 using CarPark.BLL.Services;
 using CarPark.WebUI.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CarPark.WebUI.Controllers
@@ -62,49 +61,77 @@ namespace CarPark.WebUI.Controllers
             }
         }
 
-        // GET: Accident/Edit/5
-        public ActionResult Edit(int id)
+       
+        public  async Task<IActionResult> Edit(int id)
         {
-            return View();
+            var accident = await _accidentService.GetAsync(id);
+
+            var accidentView = new AccidentViewModel()
+            {
+                Id = id,
+                Collisions = accident.Collisions,
+                ContractId = accident.ContractId,
+                DateTrafficAccident = accident.DateTrafficAccident,
+                Result = accident.Result
+            };
+
+            return View(accidentView);
         }
 
-        // POST: Accident/Edit/5
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public async Task<IActionResult> Edit(int id, AccidentViewModel accidentViewModel)
         {
             try
             {
-                // TODO: Add update logic here
+                await _accidentService.EditAsync(new Accident()
+                {
+                    Id = id,
+                    Collisions = accidentViewModel.Collisions,
+                    ContractId = accidentViewModel.ContractId,
+                    DateTrafficAccident = accidentViewModel.DateTrafficAccident,
+                    Result = accidentViewModel.Result
+                });
 
                 return RedirectToAction(nameof(Index));
             }
             catch
             {
-                return View();
+                return View(accidentViewModel);
             }
         }
 
-        // GET: Accident/Delete/5
-        public ActionResult Delete(int id)
+        
+        public  async Task<IActionResult> Delete(int id)
         {
-            return View();
+            var accident = await _accidentService.GetAsync(id);
+
+            var accidentView = new AccidentViewModel()
+            {
+                Id = accident.Id,
+                Collisions = accident.Collisions,
+                ContractId = accident.ContractId,
+                DateTrafficAccident = accident.DateTrafficAccident,
+                Result = accident.Result
+            };
+            return View(accidentView);
         }
 
-        // POST: Accident/Delete/5
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public async Task<IActionResult> Delete(AccidentViewModel accidentViewModel)
         {
             try
             {
-                // TODO: Add delete logic here
+                await _accidentService.RemoveAsync(accidentViewModel.Id);
 
                 return RedirectToAction(nameof(Index));
             }
             catch
             {
-                return View();
+                return View(accidentViewModel);
             }
         }
     }

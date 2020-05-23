@@ -25,7 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Documents\AliakseiMikhadziuk_.Net\IGI.Lab2\src\CarPark.BLL\CarPark.BLL.csproj" />
+    <ProjectReference Include="..\..\IGI.Lab2\src\CarPark.BLL\CarPark.BLL.csproj" />
   </ItemGroup>
 
 
