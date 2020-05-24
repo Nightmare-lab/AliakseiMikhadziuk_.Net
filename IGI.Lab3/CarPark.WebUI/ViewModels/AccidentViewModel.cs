@@ -1,8 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
-using CarPark.BLL.Models;
 
-namespace CarPark.WebUI.Models
+namespace CarPark.WebUI.ViewModels
 {
     public class AccidentViewModel
     {
@@ -11,9 +10,6 @@ namespace CarPark.WebUI.Models
 
         [Required(ErrorMessage = "Id not specified!")]
         public int ContractId { get; set; }
-
-        [Required]
-        public Contract Contract { get; set; }
 
         [Required(ErrorMessage = "Date traffic accident not specified!")]
         public DateTime DateTrafficAccident { get; set; }

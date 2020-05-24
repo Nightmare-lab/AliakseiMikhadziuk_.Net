@@ -1,6 +1,4 @@
-using System;
-
-namespace CarPark.WebUI.Models
+namespace CarPark.WebUI.ViewModels
 {
     public class ErrorViewModel
     {

@@ -1,120 +1,86 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
+using AutoMapper;
 using CarPark.BLL.Models;
 using CarPark.BLL.Services;
-using CarPark.WebUI.Models;
+using CarPark.WebUI.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 namespace CarPark.WebUI.Controllers
 {
     public class AccidentController : Controller
     {
         private readonly AccidentService _accidentService;
+        private readonly IMapper _mapper;
+        private readonly ILogger<AccidentController> _logger;
 
-        public AccidentController(AccidentService accidentService)
+        public AccidentController(AccidentService accidentService, IMapper mapper, ILogger<AccidentController> logger)
         {
             _accidentService = accidentService;
+            _mapper = mapper;
+            _logger = logger;
         }
-        
+
         public async Task<IActionResult> Index()
         {
-            var accidentView = (await _accidentService.GetAllAsync()).Select(e => new AccidentViewModel()
-            {
-                Id = e.Id,
-                Collisions = e.Collisions,
-                ContractId = e.ContractId,
-                DateTrafficAccident = e.DateTrafficAccident,
-                Result = e.Result,
-                Contract = e.Contract
-            });
+            var accidentView = _mapper.Map<IEnumerable<AccidentViewModel>>(await _accidentService.GetAllAsync());
             return View(accidentView);
         }
 
-        
+
 
         public ActionResult Create()
         {
             return View();
         }
 
-        
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create(AccidentViewModel accidentViewModel)
         {
             try
             {
-                await _accidentService.AddAsync(new Accident()
-                {
-                    Collisions = accidentViewModel.Collisions,
-                    Result = accidentViewModel.Result,
-                    Contract = accidentViewModel.Contract,
-                    ContractId = accidentViewModel.ContractId,
-                    DateTrafficAccident = accidentViewModel.DateTrafficAccident
-                });
-
+                await _accidentService.AddAsync(_mapper.Map<Accident>(accidentViewModel));
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch (Exception ex)
             {
+                _logger.LogError($"Error occured during creating accident. Exception: {ex.Message}");
                 return View(accidentViewModel);
             }
         }
 
-       
-        public  async Task<IActionResult> Edit(int id)
+
+        public async Task<IActionResult> Edit(int id)
         {
-            var accident = await _accidentService.GetAsync(id);
-
-            var accidentView = new AccidentViewModel()
-            {
-                Id = id,
-                Collisions = accident.Collisions,
-                ContractId = accident.ContractId,
-                DateTrafficAccident = accident.DateTrafficAccident,
-                Result = accident.Result
-            };
-
+            var accidentView = _mapper.Map<AccidentViewModel>(await _accidentService.GetAsync(id));
             return View(accidentView);
         }
 
-        
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, AccidentViewModel accidentViewModel)
+        public async Task<IActionResult> Edit(AccidentViewModel accidentViewModel)
         {
             try
             {
-                await _accidentService.EditAsync(new Accident()
-                {
-                    Id = id,
-                    Collisions = accidentViewModel.Collisions,
-                    ContractId = accidentViewModel.ContractId,
-                    DateTrafficAccident = accidentViewModel.DateTrafficAccident,
-                    Result = accidentViewModel.Result
-                });
-
+                await _accidentService.EditAsync(_mapper.Map<Accident>(accidentViewModel));
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch (Exception ex)
             {
+                _logger.LogError($"Error occured during updating accident. Exception: {ex.Message}");
                 return View(accidentViewModel);
             }
         }
 
-        
-        public  async Task<IActionResult> Delete(int id)
-        {
-            var accident = await _accidentService.GetAsync(id);
 
-            var accidentView = new AccidentViewModel()
-            {
-                Id = accident.Id,
-                Collisions = accident.Collisions,
-                ContractId = accident.ContractId,
-                DateTrafficAccident = accident.DateTrafficAccident,
-                Result = accident.Result
-            };
+        public async Task<IActionResult> Delete(int id)
+        {
+            var accidentView = _mapper.Map<AccidentViewModel>(await _accidentService.GetAsync(id));
             return View(accidentView);
         }
 
@@ -126,11 +92,11 @@ namespace CarPark.WebUI.Controllers
             try
             {
                 await _accidentService.RemoveAsync(accidentViewModel.Id);
-
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch (Exception ex)
             {
+                _logger.LogError($"Error occured during deleting accident. Exception: {ex.Message}");
                 return View(accidentViewModel);
             }
         }

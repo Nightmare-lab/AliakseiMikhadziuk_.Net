@@ -1,8 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
-using CarPark.DAL.Models;
 
-namespace CarPark.WebUI.Models
+namespace CarPark.WebUI.ViewModels
 {
     public class ContractViewModel
     {
@@ -17,9 +16,6 @@ namespace CarPark.WebUI.Models
 
         [Required(ErrorMessage = "CarId not specified!")]
         public int CarId { get; set; }
-
-        [Required]
-        public Car Car { get; set; }
 
         [Required(ErrorMessage = "Contract days not specified!")]
         public int ContractDays { get; set; }

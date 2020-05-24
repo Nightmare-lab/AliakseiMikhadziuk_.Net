@@ -1,34 +1,31 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
+using AutoMapper;
 using CarPark.BLL.Models;
 using CarPark.BLL.Services;
-using CarPark.WebUI.Models;
+using CarPark.WebUI.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 namespace CarPark.WebUI.Controllers
 {
     public class CarController : Controller
     {
         private readonly CarService _carService;
+        private readonly IMapper _mapper;
+        private readonly ILogger<CarController> _logger;
 
-        public CarController(CarService carService)
+        public CarController(CarService carService, IMapper mapper, ILogger<CarController> logger)
         {
             _carService = carService;
+            _mapper = mapper;
+            _logger = logger;
         }
         
         public async Task<IActionResult> Index()
         {
-            var carView = (await _carService.GetAllAsync()).Select(e => new CarViewModel()
-            {
-                Id = e.Id,
-                CarMake = e.CarMake,
-                CarRegistrationNumber = e.CarRegistrationNumber,
-                Class = e.Class,
-                Color = e.Color,
-                Model = e.Model,
-                Price = e.Price,
-                Rented = e.Rented
-            });
+            var carView =  _mapper.Map<IEnumerable<CarViewModel>>(await _carService.GetAllAsync());
             return View(carView);
         }
 
@@ -45,21 +42,12 @@ namespace CarPark.WebUI.Controllers
         {
             try
             {
-                await _carService.AddAsync(new Car
-                {
-                    
-                    CarMake = carViewModel.CarMake,
-                    CarRegistrationNumber = carViewModel.CarRegistrationNumber,
-                    Class = carViewModel.Class,
-                    Color = carViewModel.Color,
-                    Model = carViewModel.Model,
-                    Price = carViewModel.Price,
-                    Rented = carViewModel.Rented
-                });
+                await _carService.AddAsync(_mapper.Map<Car>(carViewModel));
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch(Exception ex)
             {
+                _logger.LogError($"Error occured during creating car. Exception: {ex.Message}");
                 return View(carViewModel);
             }
         }
@@ -67,45 +55,23 @@ namespace CarPark.WebUI.Controllers
         
         public async Task<IActionResult> Edit(int id)
         {
-            var car = await _carService.GetAsync(id);
-
-            var carView = new CarViewModel()
-            {
-                Id = id,
-                CarMake = car.CarMake,
-                CarRegistrationNumber = car.CarRegistrationNumber,
-                Class = car.Class,
-                Color = car.Color,
-                Model = car.Model,
-                Price = car.Price,
-                Rented = car.Rented
-            };
+            var carView = _mapper.Map<CarViewModel>(await _carService.GetAsync(id));
             return View(carView);
         }
 
         
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(CarViewModel carViewModel,int id)
+        public async Task<IActionResult> Edit(CarViewModel carViewModel)
         {
             try
             {
-                await _carService.EditAsync(new Car()
-                {
-                    Id = id,
-                    CarMake = carViewModel.CarMake,
-                    CarRegistrationNumber = carViewModel.CarRegistrationNumber,
-                    Class = carViewModel.Class,
-                    Color = carViewModel.Color,
-                    Model = carViewModel.Model,
-                    Price = carViewModel.Price,
-                    Rented = carViewModel.Rented
-                });
-
+                await _carService.EditAsync(_mapper.Map<Car>(carViewModel));
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch(Exception ex)
             {
+                _logger.LogError($"Error occured during updating car. Exception: {ex.Message}");
                 return View(carViewModel);
             }
         }
@@ -113,20 +79,7 @@ namespace CarPark.WebUI.Controllers
         
         public async Task<IActionResult> Delete(int id)
         {
-
-            var car = await _carService.GetAsync(id);
-
-            var carView = new CarViewModel()
-            {
-                Id = car.Id,
-                CarMake = car.CarMake,
-                CarRegistrationNumber = car.CarRegistrationNumber,
-                Class = car.Class,
-                Color = car.Color,
-                Model = car.Model,
-                Price = car.Price,
-                Rented = car.Rented
-            };
+            var carView = _mapper.Map<CarViewModel>(await _carService.GetAsync(id));
             return View(carView);
         }
 
@@ -138,11 +91,11 @@ namespace CarPark.WebUI.Controllers
             try
             {
                 await _carService.RemoveAsync(carViewModel.Id);
-
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch(Exception ex)
             {
+                _logger.LogError($"Error occured during deleting car. Exception: {ex.Message}");
                 return View(carViewModel);
             }
         }

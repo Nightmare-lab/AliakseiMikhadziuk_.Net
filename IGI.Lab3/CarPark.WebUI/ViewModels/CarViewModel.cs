@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace CarPark.WebUI.Models
+namespace CarPark.WebUI.ViewModels
 {
     public class CarViewModel
     {

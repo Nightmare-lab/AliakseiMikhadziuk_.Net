@@ -22,7 +22,7 @@ namespace CarPark.WebUI
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
+      
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
@@ -34,14 +34,13 @@ namespace CarPark.WebUI
                 .Scan(scan => scan
                     .FromAssemblies(bllAssembly)
                     .AddClasses(classes => classes.Where(type => type.Name.EndsWith("Service")))
-                   // .AsImplementedInterfaces()
                     .AsSelf()
                     .WithTransientLifetime())
-                .AddAutoMapper(typeof(MapperProfile))
+                .AddAutoMapper(typeof(MapperProfile),typeof(WebUI.MappingProfiles.MapperProfile))
                 .AddScoped(typeof(IRepository<>), typeof(Repository<>));
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+      
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -51,7 +50,7 @@ namespace CarPark.WebUI
             else
             {
                 app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+               
                 app.UseHsts();
             }
             app.UseHttpsRedirection();
@@ -62,11 +61,8 @@ namespace CarPark.WebUI
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
-            });
+                endpoints.MapDefaultControllerRoute());
         }
+
     }
 }
