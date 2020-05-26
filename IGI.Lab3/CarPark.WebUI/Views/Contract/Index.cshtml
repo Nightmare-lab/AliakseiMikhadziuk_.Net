@@ -1,0 +1,43 @@
+﻿@model IEnumerable<CarPark.WebUI.ViewModels.ContractViewModel>
+
+@{
+    ViewData["Title"] = "Contracts";
+}
+
+<h1>Contracts</h1>
+
+<p>
+    <a asp-action="Create">Create</a>
+</p>
+<table class="table">
+    <thead>
+    <tr>
+        <th>
+        </th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @item.CarId
+            </td>
+            <td>
+                @item.StarTimeContract
+            </td>
+            <td>
+                @item.EndTimeContract
+            </td>
+            <td>
+                @item.ContractDays
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

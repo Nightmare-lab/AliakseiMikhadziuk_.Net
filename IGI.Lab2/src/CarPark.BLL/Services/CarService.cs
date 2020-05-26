@@ -63,13 +63,6 @@ namespace CarPark.BLL.Services
                 throw new ArgumentNullException(nameof(car), "Object to update does not exist");
             }
 
-            var isCarRegistrationNumberUnique = (await _repository.GetAllAsync())
-                .Any(item => item.CarRegistrationNumber == car.CarRegistrationNumber);
-
-            if (isCarRegistrationNumberUnique)
-            {
-                throw new ArgumentException("CarRegistrationNumber is not unique!");
-            }
 
             await _repository.EditAsync(car);
         }
