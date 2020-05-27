@@ -4,12 +4,15 @@ using System.Threading.Tasks;
 using AutoMapper;
 using CarPark.BLL.Models;
 using CarPark.BLL.Services;
+using CarPark.WebUI.Areas.Identity;
 using CarPark.WebUI.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
 namespace CarPark.WebUI.Controllers
 {
+    
     public class CarController : Controller
     {
         private readonly CarService _carService;
@@ -29,7 +32,7 @@ namespace CarPark.WebUI.Controllers
             return View(carView);
         }
 
-        
+        [Authorize(Roles = Roles.Admin)]
         public ActionResult Create()
         {
             return View();
@@ -38,6 +41,7 @@ namespace CarPark.WebUI.Controllers
         
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = Roles.Admin)]
         public async Task<IActionResult> Create(CarViewModel carViewModel)
         {
             try
@@ -52,7 +56,8 @@ namespace CarPark.WebUI.Controllers
             }
         }
 
-        
+
+        [Authorize(Roles = Roles.Admin)]
         public async Task<IActionResult> Edit(int id)
         {
             var carView = _mapper.Map<CarViewModel>(await _carService.GetAsync(id));
@@ -62,6 +67,7 @@ namespace CarPark.WebUI.Controllers
         
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = Roles.Admin)]
         public async Task<IActionResult> Edit(CarViewModel carViewModel)
         {
             try
@@ -76,7 +82,7 @@ namespace CarPark.WebUI.Controllers
             }
         }
 
-        
+        [Authorize(Roles = Roles.Admin)]
         public async Task<IActionResult> Delete(int id)
         {
             var carView = _mapper.Map<CarViewModel>(await _carService.GetAsync(id));
@@ -86,6 +92,7 @@ namespace CarPark.WebUI.Controllers
         
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = Roles.Admin)]
         public async Task<IActionResult> Delete(CarViewModel carViewModel)
         {
             try

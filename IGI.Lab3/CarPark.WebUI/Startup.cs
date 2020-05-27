@@ -3,9 +3,11 @@ using AutoMapper;
 using CarPark.BLL.MappingProfiles;
 using CarPark.DAL.EF;
 using CarPark.DAL.Interfaces;
+using CarPark.DAL.Models;
 using CarPark.DAL.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -26,6 +28,7 @@ namespace CarPark.WebUI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
+            services.AddRazorPages();
 
             var bllAssembly = Assembly.Load("CarPark.BLL");
 
@@ -38,6 +41,12 @@ namespace CarPark.WebUI
                     .WithTransientLifetime())
                 .AddAutoMapper(typeof(MapperProfile),typeof(WebUI.MappingProfiles.MapperProfile))
                 .AddScoped(typeof(IRepository<>), typeof(Repository<>));
+
+            services.AddIdentity<ApplicationUser, IdentityRole>(options =>
+                    {
+                        options.Password.RequireNonAlphanumeric = false;
+                    })
+                .AddEntityFrameworkStores<CarParkContext>();
         }
 
       
@@ -57,9 +66,14 @@ namespace CarPark.WebUI
             app.UseStaticFiles();
 
             app.UseRouting();
+            app.UseAuthorization();
+            app.UseAuthentication();
 
             app.UseEndpoints(endpoints =>
-                endpoints.MapDefaultControllerRoute());
+            {
+                endpoints.MapDefaultControllerRoute();
+                endpoints.MapRazorPages();
+            });
         }
 
     }
