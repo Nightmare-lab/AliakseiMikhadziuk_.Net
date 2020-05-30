@@ -3,7 +3,6 @@ using AutoMapper;
 using CarPark.BLL.MappingProfiles;
 using CarPark.DAL.EF;
 using CarPark.DAL.Interfaces;
-using CarPark.DAL.Models;
 using CarPark.DAL.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -42,7 +41,7 @@ namespace CarPark.WebUI
                 .AddAutoMapper(typeof(MapperProfile),typeof(WebUI.MappingProfiles.MapperProfile))
                 .AddScoped(typeof(IRepository<>), typeof(Repository<>));
 
-            services.AddIdentity<ApplicationUser, IdentityRole>(options =>
+            services.AddIdentity<IdentityUser, IdentityRole>(options =>
                     {
                         options.Password.RequireNonAlphanumeric = false;
                     })

@@ -1,17 +1,19 @@
 ﻿using CarPark.DAL.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
 namespace CarPark.DAL.EF
 {
-    public class CarParkContext : IdentityDbContext<ApplicationUser>
+    public class CarParkContext : IdentityDbContext<IdentityUser>
     {
         private readonly ILoggerFactory _loggerFactory;
         public CarParkContext(DbContextOptions<CarParkContext> options, ILoggerFactory loggerFactory)
              : base(options)
         {
             _loggerFactory = loggerFactory;
+            Database.EnsureCreated();
             Database.Migrate();
         }
 

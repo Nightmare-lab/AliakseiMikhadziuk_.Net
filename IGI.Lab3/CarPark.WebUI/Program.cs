@@ -19,7 +19,7 @@ namespace CarPark.WebUI
             {
                 var services = scope.ServiceProvider;
 
-                var userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
+                var userManager = services.GetRequiredService<UserManager<IdentityUser>>();
                 var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
 
                 await IdentityInitializer.InitializerAsync(userManager, roleManager);
