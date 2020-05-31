@@ -3,13 +3,16 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
 using CarPark.BLL.Services;
+using CarPark.WebUI.Areas.Identity;
 using CarPark.WebUI.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Contract = CarPark.BLL.Models.Contract;
 
 namespace CarPark.WebUI.Controllers
 {
+    [Authorize(Roles = Roles.Admin)]
     public class ContractController : Controller
     {
         private readonly ContractService _contractService;
