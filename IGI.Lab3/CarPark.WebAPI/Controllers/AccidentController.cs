@@ -14,8 +14,8 @@ namespace CarPark.WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(Roles = Roles.Admin, AuthenticationSchemes = JwtToken.AuthSchemes)]
-    public class AccidentController : ControllerBase
+    [Authorize(Roles = Roles.Admin, AuthenticationSchemes = JwtInformation.AuthSchemes)]
+    public class AccidentController : Controller
     {
         private readonly AccidentService _accidentService;
 

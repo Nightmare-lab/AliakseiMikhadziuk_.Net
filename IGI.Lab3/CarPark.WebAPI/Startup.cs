@@ -47,9 +47,9 @@ namespace CarPark.WebAPI
                 .AddJwtBearer(configureOptions => configureOptions.TokenValidationParameters =
                     new TokenValidationParameters
                     {
-                        ValidIssuer = JwtToken.Issuer,
-                        ValidAudience = JwtToken.Audience,
-                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(JwtToken.Key))
+                        ValidIssuer = JwtInformation.Issuer,
+                        ValidAudience = JwtInformation.Audience,
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(JwtInformation.Key))
                     });
 
             services.AddSwaggerGen(swaggerOptions =>
@@ -108,9 +108,6 @@ namespace CarPark.WebAPI
                     swaggerOptions.RoutePrefix = string.Empty;
                 }
             );
-
-            app.UseHttpsRedirection();
-
             app.UseRouting();
 
             app.UseAuthentication();

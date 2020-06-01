@@ -14,7 +14,7 @@ namespace CarPark.WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CarController : ControllerBase
+    public class CarController : Controller
     {
         private readonly CarService _carService;
 
@@ -53,7 +53,7 @@ namespace CarPark.WebAPI.Controllers
         }
 
         // POST: api/Car
-        [Authorize(Roles = Roles.Admin, AuthenticationSchemes = JwtToken.AuthSchemes)]
+        [Authorize(Roles = Roles.Admin, AuthenticationSchemes = JwtInformation.AuthSchemes)]
         [HttpPost]
         public async Task<ActionResult<Car>> Post([FromBody] Car car)
         {
@@ -71,7 +71,7 @@ namespace CarPark.WebAPI.Controllers
 
         // PUT: api/Car/5
         [HttpPut]
-        [Authorize(Roles = Roles.Admin, AuthenticationSchemes = JwtToken.AuthSchemes)]
+        [Authorize(Roles = Roles.Admin, AuthenticationSchemes = JwtInformation.AuthSchemes)]
         public async Task<ActionResult<Car>> Put([FromBody] Car car)
         {
             try
@@ -89,7 +89,7 @@ namespace CarPark.WebAPI.Controllers
         // DELETE: api/ApiWithActions/5
         [HttpDelete]
         [Route("{id}")]
-        [Authorize(Roles = Roles.Admin, AuthenticationSchemes = JwtToken.AuthSchemes)]
+        [Authorize(Roles = Roles.Admin, AuthenticationSchemes = JwtInformation.AuthSchemes)]
         public async Task<ActionResult> Delete(int id)
         {
             try

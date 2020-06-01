@@ -15,16 +15,16 @@ namespace CarPark.WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AutorizationController : ControllerBase
+    public class AuthorizationController : Controller
     {
         private readonly SignInManager<IdentityUser> _signInManager;
 
         private readonly UserManager<IdentityUser> _userManager;
 
-        private readonly ILogger<AutorizationController> _logger;
+        private readonly ILogger<AuthorizationController> _logger;
 
 
-        public AutorizationController(SignInManager<IdentityUser> signInManager, UserManager<IdentityUser> userManager, ILogger<AutorizationController> logger)
+        public AuthorizationController(SignInManager<IdentityUser> signInManager, UserManager<IdentityUser> userManager, ILogger<AuthorizationController> logger)
         {
             _signInManager = signInManager;
             _userManager = userManager;
@@ -55,11 +55,11 @@ namespace CarPark.WebAPI.Controllers
 
                 if (signInResult.Succeeded)
                 {
-                    var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(JwtToken.Key));
+                    var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(JwtInformation.Key));
 
                     var credential = new SigningCredentials(key,SecurityAlgorithms.HmacSha256);
 
-                    var token = new JwtSecurityToken(JwtToken.Issuer,JwtToken.Audience,claims,expires:DateTime.Now.AddHours(3),signingCredentials: credential);
+                    var token = new JwtSecurityToken(JwtInformation.Issuer,JwtInformation.Audience,claims,expires:DateTime.Now.AddHours(3),signingCredentials: credential);
 
                     var tokenResult = new JwtToken
                     {

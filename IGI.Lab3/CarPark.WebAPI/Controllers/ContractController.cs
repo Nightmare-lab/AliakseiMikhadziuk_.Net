@@ -14,7 +14,7 @@ namespace CarPark.WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ContractController : ControllerBase
+    public class ContractController : Controller
     {
         private readonly ContractService _contractService;
 
@@ -54,7 +54,7 @@ namespace CarPark.WebAPI.Controllers
 
         // POST: api/Contract
         [HttpPost]
-        [Authorize(Roles = Roles.Admin, AuthenticationSchemes = JwtToken.AuthSchemes)]
+        [Authorize(Roles = Roles.Admin, AuthenticationSchemes = JwtInformation.AuthSchemes)]
         public async Task<ActionResult<Contract>> Post([FromBody] Contract contract)
         {
             try
@@ -71,7 +71,7 @@ namespace CarPark.WebAPI.Controllers
 
         // PUT: api/Contract/5
         [HttpPut]
-        [Authorize(Roles = Roles.Admin, AuthenticationSchemes = JwtToken.AuthSchemes)]
+        [Authorize(Roles = Roles.Admin, AuthenticationSchemes = JwtInformation.AuthSchemes)]
         public async Task<ActionResult<Contract>> Put([FromBody] Contract contract)
         {
             try
@@ -89,7 +89,7 @@ namespace CarPark.WebAPI.Controllers
         // DELETE: api/ApiWithActions/5
         [HttpDelete]
         [Route("{id}")]
-        [Authorize(Roles = Roles.Admin, AuthenticationSchemes = JwtToken.AuthSchemes)]
+        [Authorize(Roles = Roles.Admin, AuthenticationSchemes = JwtInformation.AuthSchemes)]
         public async Task<ActionResult<Contract>> Delete(int id)
         {
             try
