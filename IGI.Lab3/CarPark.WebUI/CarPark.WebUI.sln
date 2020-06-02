@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarPark.BLL", "..\..\IGI.La
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarPark.DAL", "..\..\IGI.Lab2\src\CarPark.DAL\CarPark.DAL.csproj", "{0037A3DE-A050-43FA-A835-41351400100F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarPark.WebAPI", "..\CarPark.WebAPI\CarPark.WebAPI.csproj", "{C9E053D5-FF56-4A60-A942-F3F67C74FF97}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{0037A3DE-A050-43FA-A835-41351400100F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0037A3DE-A050-43FA-A835-41351400100F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0037A3DE-A050-43FA-A835-41351400100F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C9E053D5-FF56-4A60-A942-F3F67C74FF97}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9E053D5-FF56-4A60-A942-F3F67C74FF97}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9E053D5-FF56-4A60-A942-F3F67C74FF97}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C9E053D5-FF56-4A60-A942-F3F67C74FF97}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
